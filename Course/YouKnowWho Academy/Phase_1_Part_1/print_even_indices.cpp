@@ -4,12 +4,12 @@
 
 using namespace std;
 
-int reverse_print_even_indices(int a[], int n)
+void reverse_print_even_indices(int a[], int n)
 {
-    if(n<0) return 0;
+    if(n<0) return;
     if(n==0) {
         cout<<a[n]<<" ";
-        return 0;
+        return;
     }
     else if(n%2==0)
     {

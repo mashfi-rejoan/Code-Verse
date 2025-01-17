@@ -111,11 +111,11 @@ void join_red_army(string blood_group, string phone) {
     string email;
     int age;
     int weight;
-    bool isFirstTime;
+    bool hasDonatedBefore;
     string lastDonationTime = "N/A";
     bool hasDisease;
 
-
+    // Email validation loop
     do {
         cout << "\t\t\t\t\tEnter your email address: ";
         cin >> email;
@@ -123,7 +123,7 @@ void join_red_army(string blood_group, string phone) {
         if (!isValidEmail(email)) {
             cout << "\t\t\t\t\tInvalid email format. Please try again.\n";
         } else {
-
+            // Check if email already exists
             ifstream checkFile(blood_group + ".txt");
             string line;
             bool emailExists = false;
@@ -144,7 +144,7 @@ void join_red_army(string blood_group, string phone) {
         }
     } while (true);
 
-
+    // Age validation loop
     do {
         cout << "\t\t\t\t\tEnter your age: ";
         cin >> age;
@@ -158,6 +158,7 @@ void join_red_army(string blood_group, string phone) {
         }
     } while (true);
 
+    // Weight validation loop
     do {
         cout << "\t\t\t\t\tEnter your weight (in kg): ";
         cin >> weight;
@@ -171,17 +172,16 @@ void join_red_army(string blood_group, string phone) {
         }
     } while (true);
 
-
-    cout << "\t\t\t\t\tIs this your first donation?\n";
-    isFirstTime = choice_menu();
+    // Previous donation history
+    cout << "\t\t\t\t\tDid you donated before?\n";
+    hasDonatedBefore = choice_menu();
     cin.ignore();
 
-    if (!isFirstTime) {
+    if (hasDonatedBefore) {
         bool validDate;
         do {
             cout << "\t\t\t\t\tWhen was your last donation? (YYYY-MM-DD): ";
             getline(cin, lastDonationTime);
-
 
             regex datePattern("\\d{4}-\\d{2}-\\d{2}");
             validDate = regex_match(lastDonationTime, datePattern);
@@ -191,9 +191,8 @@ void join_red_army(string blood_group, string phone) {
         } while (!validDate);
     }
 
-
+    // Health screening questions
     cout << "\t\t\t\t\tPlease answer the following health questions:\n\n";
-
     bool hasAnyDisease = false;
 
     cout << "\t\t\t\t\tDo you have or have you ever had any of the following:\n";
@@ -209,6 +208,7 @@ void join_red_army(string blood_group, string phone) {
     cout << "\t\t\t\t\t4. Any chronic diseases?\n";
     hasAnyDisease |= choice_menu();
 
+    // Check eligibility based on health conditions
     if (hasAnyDisease) {
         cout << "\n\t\t\t\t\tWe apologize, but due to safety protocols, you are not eligible\n";
         cout << "\t\t\t\t\tto join the Red Army at this time. Please consult with a healthcare\n";
@@ -219,6 +219,7 @@ void join_red_army(string blood_group, string phone) {
         return;
     }
 
+    // Update user information in file
     vector<string> lines;
     string line;
     bool userFound = false;
@@ -230,14 +231,13 @@ void join_red_army(string blood_group, string phone) {
             string storedPhone = line.substr(0, pos);
 
             if (storedPhone == phone) {
-
                 size_t lastComma = line.find_last_of(",");
                 string baseInfo = line.substr(0, lastComma + 1);
 
                 line = baseInfo + email + "," +
                        to_string(age) + "," +
                        to_string(weight) + "," +
-                       (isFirstTime ? "Yes" : "No") + "," +
+                       (hasDonatedBefore ? "Yes" : "No") + "," +
                        lastDonationTime + "," +
                        (hasAnyDisease ? "Yes" : "No");
                 userFound = true;
@@ -255,7 +255,7 @@ void join_red_army(string blood_group, string phone) {
         return;
     }
 
-
+    // Save updated information
     ofstream outputFile(blood_group + ".txt");
     if (outputFile.is_open()) {
         for (const string& updatedLine : lines) {
@@ -278,7 +278,6 @@ void join_red_army(string blood_group, string phone) {
         login_dashboard(blood_group, phone);
     }
 }
-
 
 bool hasJoinedRedArmy(const string& blood_group, const string& phone) {
     ifstream file(blood_group + ".txt");
@@ -885,10 +884,8 @@ void view_donation_history(const string& blood_group, const string& phone) {
                 cout << "\t\t First Time Donor  : " << (data[6] == "1" ? "Yes" : "No") << "\n";
                 cout << "\t\t Last Donation     : " << (data[7] == "N/A" ? "No previous donation" : data[7]) << "\n";
 
-                // Calculate next eligible donation date
                 if (data[7] != "N/A") {
                     try {
-                        // Parse last donation date (assuming format: YYYY-MM-DD)
                         istringstream ss(data[7]);
                         tm date = {};
                         string year, month, day;
@@ -900,9 +897,8 @@ void view_donation_history(const string& blood_group, const string& phone) {
                         date.tm_mon = stoi(month) - 1;
                         date.tm_year = stoi(year) - 1900;
 
-                        // Add 3 months to get next eligible date
                         date.tm_mon += 3;
-                        mktime(&date);  // Normalize the date
+                        mktime(&date); 
 
                         char next_date[11];
                         strftime(next_date, sizeof(next_date), "%Y-%m-%d", &date);
