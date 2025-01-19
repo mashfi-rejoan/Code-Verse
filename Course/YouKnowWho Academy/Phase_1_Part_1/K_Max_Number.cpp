@@ -13,12 +13,12 @@ int mx(int a[], int n)
         {
             mx_value = a[n];
             --n;
-            mx(a, n);
+            return mx(a, n);
         }
         else
         {
             --n;
-            mx(a, n);
+            return mx(a, n);
         }
     }
 }
