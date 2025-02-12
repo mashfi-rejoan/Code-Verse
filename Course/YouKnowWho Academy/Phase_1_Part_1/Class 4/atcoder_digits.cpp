@@ -8,7 +8,14 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    cout << "Hello World\n"; 
-
+    int n, k; cin >> n >> k;
+    int cnt = 0;
+    while(n > 0)
+    {
+    	n = n / k;
+    	// cout << n << nl;
+    	cnt++;
+    } 
+    cout << cnt << nl;
     return 0;
 }

@@ -8,7 +8,9 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    cout << "Hello World\n"; 
+    int x; cin >> x;
+    if(abs(2050 - x) <= 25) cout << "YES\n";
+    else cout << "NO\n"; 
 
     return 0;
 }

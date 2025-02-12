@@ -8,7 +8,13 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    cout << "Hello World\n"; 
+    int t; cin >> t;
+    while(t--)
+    {
+    	int x, y; cin >> x >> y;
+    	ll ans = 1LL * x * y;
+    	cout << ans << nl;
+    } 
 
     return 0;
 }
