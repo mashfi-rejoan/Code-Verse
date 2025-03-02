@@ -1,26 +1,14 @@
-#include<stdio.h>
-#include<string.h>
-int main()
+#include<bits/stdc++.h>
+#define ll long long
+#define nl '\n'
+using namespace std;
+
+int32_t main()
 {
-    char str[1001];
-    scanf("%s",&str);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-    int length=strlen(str);
-
-    char p[5] = {'h', 'e', 'i', 'd', 'i'};
-
-    int j = 0;
-    for(int i=0; i<length; i++)
-    {
-        if(str[i] == p[j]) j++;
-
-        if(j == 5)
-        {
-            printf("YES\n");
-            return 0;
-        }
-    }
-    printf("NO\n");
+    cout << "h\n"; 
 
     return 0;
 }
