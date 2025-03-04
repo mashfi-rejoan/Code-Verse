@@ -1,15 +1,15 @@
+<snippet>
+  <content><![CDATA[
 #include<bits/stdc++.h>
 #define ll long long
 #define nl '\n'
 using namespace std;
 
+
+
 void solve()
 {
-    int k; cin >> k;
-    // cout << (k % 3) << nl;
-    if((k % 3) == 1) cout << "YES" << nl;
-    else  cout << "NO" << nl;
-   
+    ${0}
 }
 
 int32_t main()
@@ -25,3 +25,8 @@ int32_t main()
 
     return 0;
 }
+]]></content>
+  <tabTrigger>cpt</tabTrigger>
+  <description>C++ Solve Function Template</description>
+  <scope>source.c++</scope>
+</snippet>
