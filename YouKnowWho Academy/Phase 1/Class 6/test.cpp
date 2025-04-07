@@ -1,45 +1,48 @@
 #include<bits/stdc++.h>
-#define int long long
+#define int long long int
 #define nl '\n'
-#define all(x) x.begin(), x.end()
 using namespace std;
 
-int32_t main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    int n, p; 
-    cin >> n >> p;
-    
+void solve() {
+    int n, m;
+    cin >> n >> m;
     vector<int> v(n);
+
     for (int i = 0; i < n; i++) {
         cin >> v[i];
     }
-    
-    sort(all(v));
-    
-    int l = 0, r = 2e18; // Start with left bound as 0
-    int ans = -1; // Default answer for impossible case
-    
-    while (l <= r) {
-        int mid = l + (r - l) / 2; // Safe midpoint calculation
-        int time = 0;
-        
-        for (auto u : v) {
-            time += mid / u;
-            if (time >= p) break; // Early exit when we meet target
-        }
-        
-        if (time >= p) {
-            ans = mid;
-            r = mid - 1; // Try for smaller time
-        } else {
-            l = mid + 1; // Increase time
-        }
+    int b;
+    cin >> b;
+
+    // Generate both possible versions
+    vector<int> original(v.begin(), v.end());
+    vector<int> transformed(n);
+
+    for (int i = 0; i < n; i++) {
+        transformed[i] = b - v[i];
     }
 
-    cout << ans << nl;
+    // Check if either array can be sorted
+    bool possible_original = is_sorted(original.begin(), original.end());
+    bool possible_transformed = is_sorted(transformed.begin(), transformed.end());
+
+    // Output result
+    if (possible_original || possible_transformed) {
+        cout << "YES\n";
+    } else {
+        cout << "NO\n";
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
 
     return 0;
 }
