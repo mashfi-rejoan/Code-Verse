@@ -7,7 +7,7 @@
 
 #include<bits/stdc++.h>
 
-#define ll long long
+#define int long long int
 #define nl '\n'
 #define F first
 #define S second
@@ -17,41 +17,24 @@
 
 using namespace std;
 
-
+int n, step, moves;
+void tower(int disk, char start, char mid, char end)
+{
+	if(disk == 0) return;
+	tower(disk - 1, start, end, mid);
+	moves++;
+	if(moves == step)
+	{
+		cout << disk << " : " << start << " => " << end << nl;
+	}
+	tower(disk - 1, mid, start, end);
+}
 
 void solve()
 {
-    int n, k; cin >> n >> k;
-    if(k % 2 ==  0)
-    {
-    	for(int i = 1; i <= n; i++)
-    	{
-    		if(i != (n - 1))
-    		{
-    			cout << (n - 1) << ' ';
-    		}
-    		else
-    		{
-    			cout << n << ' ';
-    		}
-    	}
-    }
-    else
-    {
-    	for(int i = 1; i <= n; i++)
-    	{
-    		if(i != n)
-    		{
-    			cout << n << ' ';
-    		}
-    		else
-    		{
-    			cout << (n - 1) << ' ';
-    		}
-    	}
-    }
-
-    cout << nl;
+    cin >> n >> step;
+    moves = 0;
+    tower(n, 'A', 'B', 'C');
 }
 
 int32_t main()

@@ -36,27 +36,24 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int n; cin >> n;
+    int n, x; cin >> n >> x;
     vector<int> v(n + 1), prefix(n + 1);
     for(int i = 1; i <= n; i++) {
-        cin >> v[i];
+    	cin >> v[i];
     }
     for(int i = 1; i <= n; i++) {
-        prefix[i] = (prefix[i - 1] + v[i]) % n;
-        if(prefix[i] < 0) {
-            prefix[i] = (prefix[i] + n) % n;
-        }
+    	prefix[i] = prefix[i - 1] + v[i];
     }
     unordered_map<int, int, custom_hash> ump;
     int ans = 0;
+    ump[0]++;
     for(int i = 1; i <= n; i++) {
-        int item = prefix[i];
-        if(ump.find(item) != ump.end()) {
-            ans++;
-        }
-        ump[item] = i;
-    }
+    	int item = prefix[i] - x;
+    	if(ump.find(item) != ump.end()) {
+    		ans += ump[item];
+    	}
+    	ump[prefix[i]]++;
+    } 
     cout << ans << nl;
-
     return 0;
 }

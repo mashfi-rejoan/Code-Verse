@@ -48,13 +48,14 @@ int32_t main()
         }
     }
     unordered_map<int, int, custom_hash> ump;
+    ump[prefix[0]]++;
     int ans = 0;
     for(int i = 1; i <= n; i++) {
         int item = prefix[i];
         if(ump.find(item) != ump.end()) {
-            ans++;
+            ans += ump[item];
         }
-        ump[item] = i;
+        ump[item]++;
     }
     cout << ans << nl;
 

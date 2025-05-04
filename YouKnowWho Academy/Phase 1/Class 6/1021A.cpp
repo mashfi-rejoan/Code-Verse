@@ -7,7 +7,7 @@
 
 #include<bits/stdc++.h>
 
-#define ll long long
+#define int long long int
 #define nl '\n'
 #define F first
 #define S second
@@ -21,36 +21,23 @@ using namespace std;
 
 void solve()
 {
-    int n, k; cin >> n >> k;
-    if(k % 2 ==  0)
+    string s; cin >> s;
+    sort(all(s));
+    vector<int> v;
+    for(char c : s)
     {
-    	for(int i = 1; i <= n; i++)
+    	v.push_back(c - '0');
+    }
+    // print(v);
+    for(int i = 9; i >= 0; i--)
+    {
+    	auto it = lower_bound(all(v), i);
+    	cout << *it;
+    	if(it != v.end())
     	{
-    		if(i != (n - 1))
-    		{
-    			cout << (n - 1) << ' ';
-    		}
-    		else
-    		{
-    			cout << n << ' ';
-    		}
+    		v.erase(it);
     	}
     }
-    else
-    {
-    	for(int i = 1; i <= n; i++)
-    	{
-    		if(i != n)
-    		{
-    			cout << n << ' ';
-    		}
-    		else
-    		{
-    			cout << (n - 1) << ' ';
-    		}
-    	}
-    }
-
     cout << nl;
 }
 
