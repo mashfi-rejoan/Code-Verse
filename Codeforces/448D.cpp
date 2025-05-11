@@ -17,34 +17,31 @@
 
 using namespace std;
 
-int n, k;
+int n, m, k; 
 bool is_ok(int x) {
-   int cnt = 0;
-   for(int i = 1; i <= n; i++) {
-      cnt += min(n, x / i);
-   }
-   return cnt >= k;
+	int cnt = 0;
+	for(int i = 1; i <= n; i++) {
+		cnt += min(m, x / i);
+	}
+	return cnt >= k;
 }
-
 int32_t main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    cin >> n; 
-    k = (n * n) / 2 + 1;
+    cin >> n >> m >> k; 
 
-    int l = 0, r = n * n, ans = 0;
+    int l = 1, r = n * m, ans = 0;
     while(l <= r) {
-      int mid = l + (r - l) / 2;
-      if(is_ok(mid)) {
-         ans = mid;
-         r = mid - 1;
-      } else {
-         l = mid + 1;
-      }
+    	int mid = l + (r - l) / 2;
+    	if(is_ok(mid)) {
+    		ans = mid;
+    		r = mid - 1;
+    	} else {
+    		l = mid + 1;
+    	}
     }
     cout << ans << nl;
-    
     return 0;
 }
