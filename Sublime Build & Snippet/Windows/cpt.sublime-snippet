@@ -1,46 +1,37 @@
 <snippet>
   <content><![CDATA[
 /*  
-   In the name of Allah, the Most Gracious, the Most Merciful.  
-
-   Author : Mashfi Rejoan Saikat   
+  In the name of Allah, the Most Gracious, the Most Merciful.  
 */
 
-
 #include<bits/stdc++.h>
+using namespace std;
 
-#define int long long int
 #define nl '\n'
-#define F first
-#define S second
+#define int long long int
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
 #define print(x) for(auto u : x) cout << u << ' '
 
-using namespace std;
 
 
-
-void solve()
+void solve() 
 {
-    ${0}
+  ${0}
 }
 
 int32_t main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
 
-    int t; cin >> t;
-    while(t--)
-    {
-        solve();
-    }
+  int t; cin >> t;
+  while(t--) solve();
 
-    return 0;
+  return 0;
 }
 ]]></content>
   <tabTrigger>cpt</tabTrigger>
-  <description>C++ Solve Function Template</description>
+  <description>C++ Template with solve() and test cases</description>
   <scope>source.c++</scope>
 </snippet>
