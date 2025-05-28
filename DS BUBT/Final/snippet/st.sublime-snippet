@@ -1,0 +1,46 @@
+<snippet>
+	<content><![CDATA[
+void push (int x) {
+  if(curr == n) cout << "Overflow\n";
+  else {
+    curr++;
+    Stack[curr] = x;
+  }
+}
+
+void pop () {
+  if (curr < 0) {
+    cout << "Stack is empty\n";
+    curr = -1;
+  }
+  else curr--;
+}
+
+void top () {
+  if (curr < 0) {
+    cout << "Stack is empty\n";
+    curr = -1;
+  }
+  else {
+    cout << Stack[curr] << nl;
+  }
+}
+
+void display () {
+  if (curr < 0) {
+    cout << "Stack is empty\n";
+    curr = -1;
+  }
+  else {
+    for (int i = 0; i <= curr; i++) {
+      cout << Stack[i] << ' ';
+    }
+    cout << nl;
+  }
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>st</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

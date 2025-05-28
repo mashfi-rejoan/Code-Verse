@@ -1,0 +1,16 @@
+<snippet>
+    <content><![CDATA[
+for (int i = 0; i < n; i++) {
+  int j = i - 1;
+  int save = v[i];
+  while (j >= 0 && v[j] > save) {
+    v[j + 1] = v[j];
+    j--;
+  }
+  v[j + 1] = save;
+}
+]]></content>
+    <tabTrigger>isort</tabTrigger>
+    <scope>source.c++, source.c</scope>
+    <description>Insertion Sort Loop</description>
+</snippet>

@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+void TOH (int disk, char start, char end, char mid) {
+  if (disk == 0) return;
+  TOH(disk - 1, start, mid, end);
+  cout << disk << " : "<< start << " => " << end << nl;
+  TOH(disk - 1, mid, end, start);
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>toh</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
