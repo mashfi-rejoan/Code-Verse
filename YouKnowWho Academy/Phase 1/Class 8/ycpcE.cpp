@@ -12,7 +12,30 @@ using namespace std;
 #define print(x) for(auto u : x) cout << u << ' '
 #define trace(x) cout << #x << ": " << x << " \n"; 
 
+struct DS
+{
+  multiset<int> ms;
+  multiset<int>::iterator it;
+  void add(int x) {
+    if (ms.empty()) {
+      ms.insert(x);
+      it = ms.begin();
+      return;
+    }
+    ms.insert(x);
+    if (x < *it) {
+      if (ms.size() % 2 == 0) it--;
+    } 
+    else {
+      if (ms.size() % 2 != 0) it++;
+    }
+  }
 
+  int med() {
+    if (ms.empty()) return 0;
+    return *it;
+  }
+};
 
 void solve() 
 {
@@ -22,7 +45,12 @@ void solve()
     int x; cin >> x;
     v.push_back((x % 10));
   }
-  
+  DS ds;
+  for (int i = 0; i < n; i++) {
+    ds.add(v[i]);
+    cout << ds.med() << " ";
+  }
+  cout << nl;
 
 }
 

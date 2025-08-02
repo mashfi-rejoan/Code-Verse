@@ -17,13 +17,28 @@ using namespace std;
 void solve() 
 {
   int n; cin >> n;
-  vector<int> v;
-  for (int i = 0; i < n; i++) {
-    int x; cin >> x;
-    v.push_back((x % 10));
-  }
-  
+  vector<int> v(n), cnt(30, 0);
+  for (auto &u : v) cin >> u;
 
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < 30; j++) {
+      if ((v[i] >> j) & 1) {
+        cnt[j]++;
+      }
+    }
+  }
+
+  for (int k = 1; k <= n; k++) {
+    bool flag = true;
+    for (int j = 0; j < 30; j++) {
+      if (cnt[j] % k != 0) {
+        flag = false;
+        break;
+      }
+    }
+    if (flag) cout << k << " ";
+  }
+  cout << nl;
 }
 
 int32_t main()

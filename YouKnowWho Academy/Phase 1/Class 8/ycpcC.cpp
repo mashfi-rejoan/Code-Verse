@@ -17,13 +17,22 @@ using namespace std;
 void solve() 
 {
   int n; cin >> n;
-  vector<int> v;
-  for (int i = 0; i < n; i++) {
-    int x; cin >> x;
-    v.push_back((x % 10));
+  vector<int> v(n);
+  for (auto &u : v) cin >> u;
+  int e = 0, o = 0;
+  for (auto u : v) {
+    if (u % 2 == 0) e++;
+    else o++;
   }
-  
-
+  int xe = 0, yo = 0;
+  for (int i = 1; i <= n; i++) {
+    if (i % 2 == 0) xe++;
+    else yo++;
+  }
+  // trace(xe); trace(yo); trace(e); trace(o);
+  if (e == xe and o == yo) cout << "YES\n";
+  else if (e == yo and o == xe) cout << "YES\n";
+  else cout << "NO\n";
 }
 
 int32_t main()

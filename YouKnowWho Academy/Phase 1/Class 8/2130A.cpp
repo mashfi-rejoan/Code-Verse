@@ -17,13 +17,15 @@ using namespace std;
 void solve() 
 {
   int n; cin >> n;
-  vector<int> v;
+  vector<int> v(n);
+  for (auto &u : v) cin >> u;
+  sort(all(v));
+  int sum = 0;
   for (int i = 0; i < n; i++) {
-    int x; cin >> x;
-    v.push_back((x % 10));
+    if (v[i] == 0) sum++;
+    else sum += v[i];
   }
-  
-
+  cout << sum << nl;
 }
 
 int32_t main()

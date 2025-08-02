@@ -16,14 +16,10 @@ using namespace std;
 
 void solve() 
 {
-  int n; cin >> n;
-  vector<int> v;
-  for (int i = 0; i < n; i++) {
-    int x; cin >> x;
-    v.push_back((x % 10));
-  }
-  
-
+  int a, b; cin >> a >> b;
+  // int x; cin >> x;
+  // cout << (a ^ x) + (b ^ x) << nl;
+  cout << (a ^ b) << nl;
 }
 
 int32_t main()

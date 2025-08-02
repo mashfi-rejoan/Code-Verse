@@ -17,13 +17,20 @@ using namespace std;
 void solve() 
 {
   int n; cin >> n;
-  vector<int> v;
-  for (int i = 0; i < n; i++) {
-    int x; cin >> x;
-    v.push_back((x % 10));
+  vector<int> v(n + 1), temp;
+  multiset<int> ms;
+  for (int i = 1; i <= n; i++) {
+    cin >> v[i];
+    ms.insert(v[i]);
   }
-  
 
+  for (int i = 1; i <= n; i++) {
+    temp.push_back(v[i]);
+    temp.push_back(upper_bound(v.begin() + i, v.end(), v[i]));
+    if ((int)temp.size() == 2) {
+
+    }
+  }
 }
 
 int32_t main()
