@@ -285,7 +285,7 @@ Sum of subset sums => (((1 << n) - 1) * a[i])
 Product of pair product => a[i]^2n
 Number of pairs => (n * (n - 1)) / 2
 Number of subarrays => (n * (n + 1)) / 2
-
+Expected value : sum of values of all ways / number of ways
 */
 
 int32_t main() {
