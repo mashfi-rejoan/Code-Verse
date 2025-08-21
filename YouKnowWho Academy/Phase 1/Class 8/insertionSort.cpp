@@ -1,6 +1,7 @@
 /*  
   In the name of Allah, the Most Gracious, the Most Merciful.  
 */
+//insertion sort
 
 #include<bits/stdc++.h>
 using namespace std;

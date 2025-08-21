@@ -17,22 +17,30 @@ using namespace std;
 void solve() 
 {
   int n; cin >> n;
-  vector<int> a(n + 5), b(n + 5);
-  for (int i = 1; i <= n; i++)  cin >> a[i];
-  for (int i = 1; i <= n; i++)  cin >> b[i];
+  vector<int> a(n), b(n);
+  for (int i = 0; i < n; i++)  cin >> a[i];
+  for (int i = 0; i < n; i++)  cin >> b[i];
 
-  if (a[n] != b[n]) {
-    cout << "No\n";
-    return;
-  }
-  for (int i = 1; i <= n - 1; i++) {
+  for (int i = 0; i < n - 1; i++) {
     if (a[i] == b[i]) continue;
-    if ((a[i] ^ a[i + 1]) != b[i]) {
-      cout << "No\n";
+    if ((a[i] ^ a[i + 1]) == b[i]) {
+      a[i] = b[i];
+    }
+  }
+
+  for (int i = n - 2; i >= 0; i--) {
+    if (a[i] == b[i]) continue;
+    if ((a[i] ^ a[i + 1]) == b[i]) {
+      a[i] = b[i];
+    }
+  }
+  for (int i = 0; i < n; i++) {
+    if (a[i] != b[i]) {
+      cout << "no\n";
       return;
     }
   }
-  cout << "Yes\n";
+  cout << "yes\n";
 
 
   // for (int i = 1; i <= n; i++)  cout << a[i] << ' '; cout << nl;

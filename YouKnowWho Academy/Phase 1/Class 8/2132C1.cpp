@@ -10,7 +10,7 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
 #define print(x) for(auto u : x) cout << u << ' '
-#define trace(x) cout << #x << ": " << x << " \n";
+#define trace(x) cout << #x << ": " << x << " \n"; 
 
 int power(int x, int y) {
   int result = 1;
@@ -28,14 +28,35 @@ int deal (int exp) {
   return power(3, exp + 1) + exp * power(3, exp - 1);
 }
 
-int32_t main() {
+void solve() 
+{
+  int n; cin >> n;
+  int cost = 0;
+  while (n >= 3) {
+    int exp = 0;
+    int i = 1;
+    while (i <= n) {
+      i *= 3;
+      exp++;
+    }
+    exp--;
+    // trace(exp);
+    i /= 3;
+    n -= i;
+    // trace(n);
+    cost += deal(exp);
+  }
+  cost += n * 3;
+  cout << cost << nl;
+}
+
+int32_t main()
+{
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  int x; cin >> x;
-  // int cost = power(3, x + 1) + (x * power(3, x - 1));
-  // cout << cost << nl;
-  cout << deal(x) << nl;
+  int t; cin >> t;
+  while(t--) solve();
 
   return 0;
 }

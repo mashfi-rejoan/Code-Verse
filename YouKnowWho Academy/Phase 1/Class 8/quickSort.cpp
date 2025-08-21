@@ -1,6 +1,7 @@
 /*  
   In the name of Allah, the Most Gracious, the Most Merciful.  
 */
+//quick sort
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -31,7 +32,7 @@ int32_t main() {
     cin >> a[i];
   }
 
-  
+
   printArray(n);
 
   return 0;
