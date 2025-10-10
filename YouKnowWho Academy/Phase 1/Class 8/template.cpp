@@ -1,7 +1,7 @@
 /*
   In the name of Allah, the Most Gracious, the Most Merciful.  
 */
-
+//ceil : (a + b - 1) / b
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -25,16 +25,14 @@ Index of Lowest UNSET bit         => __builtin_ffs(~x) - 1 / __builtin_ffsll(~x)
 Index of Highest SET bit          => __lg(x)
 Check Power of Two                => __builtin_popcountll(x) == 1
 */
-
+// int decimalValue = std::stoi(binaryString, nullptr, 2); // The '2' indicates base 2 (binary)
+// msb position of a number n is __lg(n)
 /*
 print the binary representation
-int n; cin >> n;
-  vector<int> v(n);
-  for (auto &u : v) cin >> u;
-  for (auto &u : v) {
-    bitset<10> bs(u);
-    cout << bs << nl;
-  }
+void BNY (int x) {
+    bitset<10> bs(x);
+    cout << x << " = " << bs << nl; 
+}
 */
 
 /*
@@ -146,6 +144,15 @@ int main() {
   return 0;
 }
 */
+
+// bitmask
+// for (int mask = 0; mask < (1 << n); mask++) {
+//     for (int i = 0; i < n; i++) {
+//       if ((mask >> i) & 1) {
+        
+//     }
+//   }
+// }
 
 /*
 bitset stuffs
@@ -288,11 +295,27 @@ Number of subarrays => (n * (n + 1)) / 2
 Expected value : sum of values of all ways / number of ways
 */
 
+/*  
+  In the name of Allah, the Most Gracious, the Most Merciful.  
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define nl '\n'
+#define int long long int
+#define all(x) x.begin(), x.end()
+#define allr(x) x.rbegin(), x.rend()
+#define print(x) for(auto u : x) cout << u << ' '
+#define trace(x) cout << #x << ": " << x << " \n";
+
+
+
 int32_t main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-
+  
 
   return 0;
 }

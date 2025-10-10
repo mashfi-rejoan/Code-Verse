@@ -14,19 +14,30 @@ using namespace std;
 #define print(x) for(auto u : x) cout << u << ' '
 #define trace(x) cout << #x << ": " << x << " \n";
 
-void BNY (int x) {
-    bitset<64> bs(x);
-    cout << x << " = " << bs << nl; 
-}
+const int N = 1e5 + 9;
+int wt[N], val[N];
 
+
+int knapsack (int w, int n) {
+  if (n == 0 or w == 0) return 0;
+  int pick = 0;
+  if (wt[n - 1] <= w) {
+    pick = val[n - 1] + knapsack(w - wt[n - 1], n - 1);
+  }
+  int notPick = knapsack(w, n - 1);
+  return max(pick, notPick);
+}
 
 int32_t main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  // cout << (16 ^ 15) << nl;
-  BNY(31);
+  int n, w; cin >> n >> w;
+  for (int i = 0; i < n; i++) {
+    cin >> wt[i] >> val[i];
+  }
 
+  cout << knapsack(w, n) << nl;
 
   return 0;
 }

@@ -18,8 +18,14 @@ int32_t main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  int x = (250 % 2);
-  trace(x);
+  int n; cin >> n;
+  int ans = 0;
+  while(n--) {
+    int a, b, c; cin >> a >> b >> c;
+    int sum = a + b + c;
+    if (sum >= 2) ans++;
+  }
+  cout << ans << nl;
 
   return 0;
 }

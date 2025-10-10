@@ -18,8 +18,17 @@ int32_t main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  int x = (250 % 2);
-  trace(x);
+  string s; cin >> s;
+  map<char, int> mp;
+  for (auto ch : s) {
+    mp[ch]++;
+  }
+  for (auto [x, y] : mp) {
+    if (mp[x] == 1) {
+      cout << x << nl;
+      return 0;
+    }
+  }
 
   return 0;
 }

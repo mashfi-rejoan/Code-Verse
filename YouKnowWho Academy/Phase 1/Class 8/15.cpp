@@ -14,19 +14,33 @@ using namespace std;
 #define print(x) for(auto u : x) cout << u << ' '
 #define trace(x) cout << #x << ": " << x << " \n";
 
-void BNY (int x) {
-    bitset<64> bs(x);
-    cout << x << " = " << bs << nl; 
-}
 
 
 int32_t main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  // cout << (16 ^ 15) << nl;
-  BNY(31);
-
+  int l, r; cin >> l >> r;
+  if (l == r) {
+    cout << 0 << nl;
+    return 0;
+  }
+  int msbl = __lg(l);
+  int msbr = __lg(r);
+  int diff;
+  for (int i = max(msbl, msbr); i >= 0; i--) {
+    if (((l >> i) & 1) != ((r >> i) & 1)) {
+      diff = i;
+      break;
+    }
+  }
+  // trace(diff);
+  int ans = 0;
+  for (int i = 0; i <= diff; i++) {
+    ans += 1LL * (1LL << i);
+    // trace(ans);
+  }
+  cout << ans << nl;
 
   return 0;
 }

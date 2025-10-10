@@ -18,8 +18,19 @@ int32_t main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  int x = (250 % 2);
-  trace(x);
+  int n, q; cin >> n >> q;
+  vector<int> a(n + 1, 1);
+  int cur = 0;
+  while (q--) {
+    int x, y; cin >> x >> y;
+    int sum = 0;
+    for (int i = cur + 1; i <= x; i++) {
+      sum += a[i];
+    }
+    a[y] += sum;
+    cout << sum << nl;
+    if (x > cur) cur = x;
+  }
 
   return 0;
 }

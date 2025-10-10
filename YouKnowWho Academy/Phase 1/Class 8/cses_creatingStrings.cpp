@@ -18,8 +18,16 @@ int32_t main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  int x = (250 % 2);
-  trace(x);
+  string s; cin >> s;
+  sort(all(s));
+  vector<string> vs;
+  int cnt = 0;
+  do {
+    cnt++;
+    vs.push_back(s);
+  } while (next_permutation(all(s)));
+  cout << cnt << nl;
+  for (auto u : vs) cout << u << nl;
 
   return 0;
 }

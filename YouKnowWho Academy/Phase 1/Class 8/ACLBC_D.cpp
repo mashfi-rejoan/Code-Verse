@@ -18,8 +18,12 @@ int32_t main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  int x = (250 % 2);
-  trace(x);
+  int n, k; cin >> n >> k;
+  vector<int> v(n);
+  for (auto &u : v) cin >> u;
+  for (auto &u : v) {
+      if 
+    }
 
   return 0;
 }

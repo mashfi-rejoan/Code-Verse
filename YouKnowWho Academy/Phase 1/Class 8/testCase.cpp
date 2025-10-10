@@ -1,11 +1,12 @@
-Input:
-3
-2 3 1
-Output:
-9
-
-Input:
-10
-23 23 3232 782 983493 377373 4949 472373782 83333444 34343434
-Output:
-669401825
+int partition (int l, int h) {
+  int pivot = a[h];
+    int i = l - 1;
+    for (int j = l; j < h; j++) {
+      if (a[j] < pivot) {
+          i++;
+          swap(a[i], a[j]);
+      }
+    }
+    swap(a[i + 1], a[h]);
+    return i + 1;
+}

@@ -10,16 +10,22 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
 #define print(x) for(auto u : x) cout << u << ' '
-#define trace(x) cout << #x << ": " << x << " \n";
+#define trace(x) cout << #x << ": " << x << " \n"; 
 
 
 
-int32_t main() {
+void solve() 
+{
+  
+}
+
+int32_t main()
+{
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  int x = (250 % 2);
-  trace(x);
+  int t; cin >> t;
+  while(t--) solve();
 
   return 0;
 }

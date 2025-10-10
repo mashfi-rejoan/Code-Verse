@@ -18,8 +18,18 @@ int32_t main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  int x = (250 % 2);
-  trace(x);
+  int n; cin >> n;
+  vector<int> v(n);
+  for (auto &u : v) cin >> u;
+  int ans = 0;
+  for (int i = 1; i < n; i++) {
+    if (v[i] < v[i - 1]) {
+      int x = (v[i - 1] - v[i]);
+      ans += x;
+      v[i] += x;
+    }
+  }
+  cout << ans << nl;
 
   return 0;
 }
