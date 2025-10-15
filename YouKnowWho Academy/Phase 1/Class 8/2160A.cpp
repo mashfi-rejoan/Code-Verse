@@ -18,7 +18,23 @@ using namespace std;
 
 void solve() 
 {
-  
+  int n; cin >> n;
+  set<int> st;
+  for (int i = 1; i <= n; i++) {
+    int x; cin >> x;
+    st.insert(x);
+  }
+  vector<int> v;
+  for (auto &u : st) v.push_back(u);
+  // print(v); cout << nl;
+  int i = 0;
+  for (i = 0; i < (int)v.size(); i++) {
+    if (i != v[i]) {
+      cout << i << nl;
+      return;
+    }
+  }
+  cout << i << nl;
 }
 
 int32_t main()
@@ -26,8 +42,7 @@ int32_t main()
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  int t = 1;
-  // cin >> t;
+  int t; cin >> t;
   while(t--) solve();
 
   return 0;

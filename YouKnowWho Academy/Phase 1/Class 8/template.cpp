@@ -34,7 +34,7 @@ void BNY (int x) {
     cout << x << " = " << bs << nl; 
 }
 */
-
+// sum of xor of array = 2^(n - 1) * (or of the whole array)
 /*
 Class 2 - bit stuffs - ykw
 #include<bits/stdc++.h>

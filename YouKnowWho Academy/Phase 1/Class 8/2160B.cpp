@@ -18,7 +18,25 @@ using namespace std;
 
 void solve() 
 {
-  
+  int n; cin >> n;
+  vector<int> v(n);
+  for (auto &u : v) cin >> u;
+
+  int cur = 1;
+  cout << cur << ' ';
+  int prev_dif = 1;
+  for (int i = 1; i < n; i++) {
+    int cur_dif = abs(v[i] - v[i - 1]);
+    if (prev_dif >= cur_dif) {
+      cout << cur << ' ';
+    }
+    else {
+      cur++;
+      cout << cur << ' ';
+    }
+    prev_dif = cur_dif;
+  }
+  cout << nl;
 }
 
 int32_t main()
@@ -26,8 +44,7 @@ int32_t main()
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  int t = 1;
-  // cin >> t;
+  int t; cin >> t;
   while(t--) solve();
 
   return 0;
