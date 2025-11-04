@@ -1,34 +1,41 @@
-/*  
-  In the name of Allah, the Most Gracious, the Most Merciful.  
-*/
+#include <bits/stdc++.h>
 
-#include<bits/stdc++.h>
 using namespace std;
 
-#define nl '\n'
-#define int long long int
-#define no cout << "NO" << '\n'
-#define yes cout << "YES" << '\n'
-#define all(x) x.begin(), x.end()
-#define allr(x) x.rbegin(), x.rend()
-#define print(x) for(auto u : x) cout << u << ' '
-#define trace(x) cout << #x << ": " << x << " \n"; 
-
-
-
-void solve() 
-{
-  
+int query(int l, int r) {
+    printf("? %d %d\n", l, r);
+    fflush(stdout);
+    int ret; scanf("%d", &ret);
+    return ret;
 }
 
-int32_t main()
-{
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
+int main() {
+    int N; scanf("%d", &N);
+    int x = query(1, N);
+    bool lft = false;
+    if(x != 1) {
+        if(query(1, x) == x) lft = true;
+    }
 
-  int t = 1;
-  // cin >> t;
-  while(t--) solve();
-
-  return 0;
+    if(lft) {
+        int l = 1, r = x - 1;
+        while(l <= r) {
+            int m = l + r >> 1;
+            if(query(m, x) == x) l = m + 1;
+            else r = m - 1;
+        }
+        printf("! %d\n", r);
+        fflush(stdout);
+    }
+    else {
+        int l = x + 1, r = N;
+        while(l <= r) {
+            int m = l + r >> 1;
+            if(query(x, m) == x) r = m - 1;
+            else l = m + 1;
+        }
+        printf("! %d\n", l);
+        fflush(stdout);
+    }
+    return 0;
 }
