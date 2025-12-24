@@ -279,14 +279,19 @@ int power(int x, int y) {
   return result;
 }
 
-// binary exponentiaton
-int power(int x, int n, int m) {
-  if (n == 0) return 1 % m;
-  int cur = power(x, n / 2, m);
-  if (n % 2 == 0) return 1LL * cur * cur % m;
-  else return 1LL * cur * cur % m * x % m;
+// binary exponentiaton iterative / big mod
+int power(int x, int n, int mod) {
+  x %= mod;
+  int ans = 1 % mod;
+  while (n > 0) {
+    if (n & 1) {
+      ans = 1LL * ans * x % mod;
+    }
+    x = 1LL * x * x % mod;
+    n >>= 1;
+  } 
+  return ans;
 }
-
 
 //check if there is a substring a, in the string s
 book is_there (string &s, string &a) {

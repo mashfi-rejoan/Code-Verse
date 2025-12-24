@@ -1,0 +1,3 @@
+if (m > x) then (x % m = x)
+if (m <= x) then (x % m) <= (x/2)
+if (m > (x/2)) then (x % m) = (x - m)
