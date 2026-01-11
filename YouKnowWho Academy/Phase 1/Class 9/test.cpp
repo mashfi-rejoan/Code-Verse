@@ -1,40 +1,29 @@
+// tower of hanoi
 /*  
-  In the name of Allah, the Most Gracious, the Most Merciful.  
+   In the name of Allah, the Most Gracious, the Most Merciful.  
+
+   Author : Mashfi Rejoan Saikat   
 */
 
-#include<bits/stdc++.h>
-using namespace std;
 
-#define nl '\n'
+#include<bits/stdc++.h>
+
 #define int long long int
-#define no cout << "NO" << '\n'
-#define yes cout << "YES" << '\n'
+#define nl '\n'
+#define F first
+#define S second
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
 #define print(x) for(auto u : x) cout << u << ' '
-#define trace(x) cout << #x << ": " << x << " \n"; 
 
+using namespace std;
 
-
-// void solve() 
-// {
-//   int n = 15;
-//   vector<pair<int,int>> vp;
-//   for (int i = 0; i <= n; i++) {
-//     bitset<10> bs(i);
-//     // cout << bs << nl;
-//     // cout << bs.count() << nl;
-//     vp.push_back({bs.count(), i});
-//   }
-//   sort(allr(vp));
-//   for (auto [x, y] : vp) {
-//     cout << x << ' ' << y << nl;
-//   }
-
-// }
-
-void solve() {
-  cout << 1234567 % 1000 << nl;
+void TOH(int n, int from, int u, int to)
+{
+  if(n <= 0) return;
+  TOH(n - 1, from, to, u);
+  cout << from << " " << to << nl;
+  TOH(n - 1, u, from, to);
 }
 
 int32_t main()
@@ -42,9 +31,10 @@ int32_t main()
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  int t = 1;
-  // cin >> t;
-  while(t--) solve();
+  int n; cin >> n;
+  cout << (1 << n) - 1 << nl;
+  TOH(n, 1, 2, 3); 
+
 
   return 0;
 }

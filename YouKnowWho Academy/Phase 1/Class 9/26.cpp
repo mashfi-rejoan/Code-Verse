@@ -19,11 +19,22 @@ using namespace std;
 void solve() 
 {
   int n; cin >> n;
-  vector<int> v(n);
+  vector<int> v(n), u;
   for (int i = 0; i < n; i++) cin >> v[i];
   int x; cin >> x;
-  for (int i = 0; i < n; i++) v[i] = x % v[i];
-  cout << *max_element(all(v)) << nl;
+  sort(allr(v));
+  int ans = -1, mn = v[n - 1];
+  for (int mask = 0; mask < (1 << n); mask++) {
+    int temp = x;
+    for (int i = 0; i < n; i++) {
+      if ((mask >> i) & 1) {
+        temp %= v[i];
+      }
+    }
+    temp %= mn;
+    ans = max(ans, temp);
+  }
+  cout << ans << nl;
 }
 
 int32_t main()

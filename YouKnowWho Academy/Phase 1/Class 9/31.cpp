@@ -11,21 +11,38 @@ using namespace std;
 #define yes cout << "YES" << '\n'
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
-#define CEIL(a, b) (((a) + (b) - 1) / (b))
 #define print(x) for(auto u : x) cout << u << ' '
 #define trace(x) cout << #x << ": " << x << " \n"; 
 
+int bigmod(int x, int n, int mod) {
+  x %= mod;
+  int ans = 1 % mod;
+  while (n > 0) {
+    if (n & 1) ans = 1LL * ans * x % mod;
+    x = 1LL * x * x % mod;
+    n >>= 1;
+  }
+  return ans;
+}
 
+int mash(int a, int x, int m) {
+  if (x == 0) return 1 % m;
+  if (x & 1) {
+    int p = x / 2;
+    int cur = mash(a, p, m);
+    int ans = (cur + (bigmod(a, p + 1, m) * cur) % m) % m;
+    return ans;
+  }
+  else {
+    int ans = (mash(a, x - 1, m) + bigmod(a, x, m)) % m;
+    return ans;
+  }
+}
 
 void solve() 
 {
-  int n; cin >> n;
-  int ans = 0;
-  while (n > 0) {
-    ans += (n / 5);
-    n /= 5;
-  }
-  cout << ans << nl;
+  int a, x, m; cin >> a >> x >> m;
+  cout << mash(a, x - 1, m) << nl;
 }
 
 int32_t main()

@@ -1,3 +1,13 @@
-if (m > x) then (x % m = x)
-if (m <= x) then (x % m) <= (x/2)
-if (m > (x/2)) then (x % m) = (x - m)
+vector<int> pf;
+void prime_factors() {
+  int n = 18;
+  for (int i = 2; i * i <= n; i++) {
+    if (n % i == 0) {
+      pf.push_back(i);
+      while(n % i == 0) {
+        n /= i;
+      }
+    }
+  }
+  if (n > 1) pf.push_back(n);
+}

@@ -11,21 +11,22 @@ using namespace std;
 #define yes cout << "YES" << '\n'
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
-#define CEIL(a, b) (((a) + (b) - 1) / (b))
 #define print(x) for(auto u : x) cout << u << ' '
 #define trace(x) cout << #x << ": " << x << " \n"; 
-
 
 
 void solve() 
 {
   int n; cin >> n;
-  int ans = 0;
-  while (n > 0) {
-    ans += (n / 5);
-    n /= 5;
+  vector<int> v(n);
+  for (int i = 0; i < n; i++) cin >> v[i];
+  int gcd = 0, i = 0, j = n - 1;
+  while (i <= j) {
+    gcd = __gcd(gcd, abs(v[i] - v[j]));
+    i++;
+    j--;
   }
-  cout << ans << nl;
+  gcd == 0? cout << -1 << nl : cout << gcd << nl;
 }
 
 int32_t main()

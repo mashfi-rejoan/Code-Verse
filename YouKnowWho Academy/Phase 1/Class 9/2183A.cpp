@@ -11,7 +11,6 @@ using namespace std;
 #define yes cout << "YES" << '\n'
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
-#define CEIL(a, b) (((a) + (b) - 1) / (b))
 #define print(x) for(auto u : x) cout << u << ' '
 #define trace(x) cout << #x << ": " << x << " \n"; 
 
@@ -20,12 +19,22 @@ using namespace std;
 void solve() 
 {
   int n; cin >> n;
-  int ans = 0;
-  while (n > 0) {
-    ans += (n / 5);
-    n /= 5;
-  }
-  cout << ans << nl;
+  vector<int> v(n);
+  for (auto &i : v) cin >> i;
+  // int cnt0 = 0, cnt1 = 0;
+  // int xorr = 0;
+  // for (auto u : v) {
+  //   if (u == 0) cnt0++;
+  //   else cnt1++;
+  //   xorr += u;
+  // }
+  // // trace(xorr);
+  // if (cnt1 == n) cout << "Alice\n";
+  // else if (cnt0 == n) cout << "Bob\n";
+  // else if (cnt1 >= cnt0) cout << "Alice\n";
+  // else cout << "Bob\n";
+  if (v[0] == 0 and v[n - 1] == 0) cout << "Bob\n";
+  else cout << "Alice\n";
 }
 
 int32_t main()
@@ -34,7 +43,7 @@ int32_t main()
   cin.tie(NULL);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
   while(t--) solve();
 
   return 0;

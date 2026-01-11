@@ -11,7 +11,6 @@ using namespace std;
 #define yes cout << "YES" << '\n'
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
-#define CEIL(a, b) (((a) + (b) - 1) / (b))
 #define print(x) for(auto u : x) cout << u << ' '
 #define trace(x) cout << #x << ": " << x << " \n"; 
 
@@ -21,10 +20,11 @@ void solve()
 {
   int n; cin >> n;
   int ans = 0;
-  while (n > 0) {
-    ans += (n / 5);
-    n /= 5;
+  for (int i = 0; i < n; i++) {
+    int x; cin >> x;
+    ans += (x - 1);
   }
+  
   cout << ans << nl;
 }
 
