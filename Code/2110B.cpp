@@ -22,7 +22,18 @@ using namespace std;
 
 void solve() 
 {
-  
+  string s; cin >> s;
+  int o = 0, c = 0;
+  for (int i = 0; i < sz(s) - 1; i++) {
+    // trace(s[i]); trace(s[i + 1]);
+    if (s[i] == '(') o++;
+    if (s[i] == ')') c++;
+    if (s[i] == ')' and s[i + 1] == '(' and o == c) {
+      yes;
+      return;
+    }
+  }
+  no;
 }
 
 int32_t main()

@@ -22,7 +22,12 @@ using namespace std;
 
 void solve() 
 {
-  
+  int n, k; cin >> n >> k;
+  vecin(a, n);
+  for (int i = 0; i < n; i++) {
+    a[i] += ((a[i] % (k + 1)) * k);
+  }
+  print(a);
 }
 
 int32_t main()

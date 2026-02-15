@@ -5,17 +5,35 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// ---------- Macros ----------
 #define nl '\n'
 #define i128 __int128
 #define int long long
+#define sz(x) ((int)(x).size())
 #define no cout << "NO" << '\n'
 #define yes cout << "YES" << '\n'
 #define all(x) (x).begin(), (x).end()
 #define allr(x) (x).rbegin(), (x).rend()
 #define CEIL(a, b) (((a) + (b) - 1) / (b))
-#define print(x) for (auto u : (x)) cout << u << ' '
 #define trace(x) cout << #x << ": " << x << " \n"
+#define print(x) for (auto u : (x)) cout << u << ' '; cout << nl;
+#define vecin(name, len) vector<int> name(len); for (auto &_ : name) cin >> _;
+
+void solve() 
+{
+  
+}
+
+int32_t main()
+{
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+
+  int t = 1;
+  cin >> t;
+  while(t--) solve();
+
+  return 0;
+}
 
 // ---------- Contribution Technique ----------
 Sum of pair sums => (2 * n * a[i])
@@ -82,7 +100,7 @@ Sum of infinite GP (|r| < 1):
   S_inf = a / (1 - r)
 
 
-
+// valid polygon: the sides of the polygon is less than the sum of other sides
 
 // ---------- Bit Stuffs (GCC Built-in) ----------
 Count of set bits                 => __builtin_popcount(x) / __builtin_popcountll(x)
@@ -215,20 +233,4 @@ void write(__int128 x) {
   cout << to_string(x) << '\n';
 }
 
-// ---------- Main ----------
-void solve() 
-{
-  
-}
 
-int32_t main()
-{
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
-  int t = 1;
-  // cin >> t;
-  while(t--) solve();
-
-  return 0;
-}

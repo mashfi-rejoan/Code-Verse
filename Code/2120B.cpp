@@ -22,7 +22,14 @@ using namespace std;
 
 void solve() 
 {
-  
+  int n, s; cin >> n >> s;
+  int cnt = 0;
+  while(n--) {
+    int dx, dy, x, y; cin >> dx >> dy >> x >> y;
+    if (x == y and dx == dy) cnt++;
+    if (x  + y == s and dx != dy) cnt++;
+  }
+  cout << cnt << nl;
 }
 
 int32_t main()

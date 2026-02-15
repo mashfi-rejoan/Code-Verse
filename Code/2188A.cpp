@@ -22,7 +22,20 @@ using namespace std;
 
 void solve() 
 {
-  
+  int n; cin >> n;
+  vector<int> v(n + 1);
+  int x = n, y = 1;
+  for (int i = n; i >= 1; i -= 2) {
+    v[i] = x;
+    x--;
+  }
+  for (int i = n - 1; i >= 1; i -= 2) {
+    v[i] = y;
+    y++;
+  }
+  for (int i = 1; i <= n; i++) cout << v[i] << ' ';
+    cout << nl;
+
 }
 
 int32_t main()

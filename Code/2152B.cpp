@@ -14,15 +14,28 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define allr(x) (x).rbegin(), (x).rend()
 #define CEIL(a, b) (((a) + (b) - 1) / (b))
-#define trace(x) cout << #x << ": " << x << " \n"
-#define print(x) for (auto u : (x)) cout << u << ' '; cout << nl;
-#define vecin(name, len) vector<int> name(len); for (auto &_ : name) cin >> _;
+#define print(x) for (auto u : (x)) cout << u << ' '
+#define trace(x) cout << #x << ": " << x << " \n" 
 
 
 
 void solve() 
 {
-  
+  int n, x1, y1, x2, y2; cin >> n >> x1 >> y1 >> x2 >> y2;
+
+  int dx = abs(x1 - x2);
+  int dy = abs(y1 - y2);
+
+  int dxx = 0;
+  if (x2 > x1) dxx = x1;
+  if (x2 < x1) dxx = n - x1;
+
+  int dyy = 0;
+  if (y2 > y1) dyy = y1;
+  if (y2 < y1) dyy = n - y1;
+
+  int ans = max(dx + dxx, dy + dyy);
+  cout << ans << nl;
 }
 
 int32_t main()

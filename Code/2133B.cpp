@@ -22,7 +22,14 @@ using namespace std;
 
 void solve() 
 {
-  
+  int n; cin >> n;
+  vecin(g, n);
+  sort(allr(g));
+  int ans = 0;
+  for (int i = 0; i < n; i += 2) {
+    ans += g[i];
+  }
+  cout << ans << nl;
 }
 
 int32_t main()

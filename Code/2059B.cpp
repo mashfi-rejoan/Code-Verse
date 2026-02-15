@@ -22,6 +22,33 @@ using namespace std;
 
 void solve() 
 {
+  int n, k; cin >> n >> k;
+  vecin(v, n);
+
+  if (n == k) {
+    int cur = 1;
+    for (int i = 1; i < n; i += 2) {
+      if (v[i] == cur) {
+        cur++;
+        continue;
+      }
+      else {
+        cout << cur << nl;
+        return;
+      }
+    }
+    cout << v[n - 1] + 1 << nl;
+    return;
+  }
+
+  for (int i = 1; i <= (n - k) + 1; i++) {
+    if (v[i] != 1) {
+      cout << 1 << nl;
+      return;
+    }
+  }
+  
+  cout << 2 << nl;
   
 }
 

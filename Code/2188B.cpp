@@ -22,7 +22,36 @@ using namespace std;
 
 void solve() 
 {
-  
+  int n; cin >> n;
+  string s; cin >> s;
+  if (n <= 2) {
+    cout << 1 << nl;
+    return;
+  }
+
+  int ans = count(all(s), '1');
+  if (s[0] == '0' and s[1] == '0') {
+    s[1] = '1';
+    ans++;
+  }
+  if (s[n - 1] == '0' and s[n - 2] == '0') {
+    s[n - 2] = '1';
+    ans++;
+  }
+  // trace(s);
+  for (int l = 0; l < n; l++) {
+    if (s[l] == '1') {
+      int r = l + 1;
+      while (s[r] == '0') {
+        r++;
+      }
+      int zero = (r - l) - 1;
+      // trace(zero);
+      ans += (zero / 3);
+      l = r - 1;
+    }
+  }
+  cout << ans << nl;
 }
 
 int32_t main()

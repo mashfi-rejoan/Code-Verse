@@ -16,13 +16,22 @@ using namespace std;
 #define CEIL(a, b) (((a) + (b) - 1) / (b))
 #define trace(x) cout << #x << ": " << x << " \n"
 #define print(x) for (auto u : (x)) cout << u << ' '; cout << nl;
-#define vecin(name, len) vector<int> name(len); for (auto &_ : name) cin >> _;
+#define vecin(name, len) vector<double> name(len); for (auto &_ : name) cin >> _;
 
 
 
 void solve() 
 {
-  
+  int n; cin >> n;
+  double px, py, qx, qy; cin >> px >> py >> qx >> qy;
+  vecin(a, n);
+  double d = sqrt(((px - qx) * (px - qx)) + ((py - qy) * (py - qy)));
+  a.push_back(d);
+  double sum = accumulate(all(a), 0.0);
+  double mx = *max_element(all(a));
+  sum -= mx;
+  if (mx <= sum) yes;
+  else no;
 }
 
 int32_t main()

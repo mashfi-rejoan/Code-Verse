@@ -22,7 +22,17 @@ using namespace std;
 
 void solve() 
 {
-  
+  int n; cin >> n;
+  vector<int> v(n);
+  for (int i = 0; i < n; i++) {
+    cin >> v[i];
+    v[i] = abs(v[i]);
+  }
+  int mid = v[0];
+  sort(v.begin(), v.end());
+  if (mid <= v[n / 2]) yes;
+  else no;
+
 }
 
 int32_t main()

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gantt Chart - A4 Optimized</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-partial {
+            background: linear-gradient(to right, #ee5253 50%, #0096C7 50%);
+        }
+        @media print {
+            body { margin: 0; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script>
+        const PROJECT_DATA = [
+            { id: 'A', name: 'Define Project Scope & Objectives', start: 0, dur: 1 },
+            { id: 'B', name: 'Stakeholder Interviews', start: 1, dur: 1 },
+            { id: 'C', name: 'Resource Allocation & Tech Stack', start: 2, dur: 1 },
+            { id: 'D', name: 'Create Work Breakdown Structure', start: 3, dur: 1 },
+            { id: 'E', name: 'Requirement Gathering', start: 2, dur: 2 },
+            { id: 'F', name: 'Feature Logic: Analysis & Team Finder', start: 4, dur: 2 },
+            { id: 'G', name: 'Integration Requirements', start: 4, dur: 1 },
+            { id: 'H', name: 'Database Schema Design (ERD)', start: 6, dur: 1 },
+            { id: 'I', name: 'UI/UX Design: Dashboards', start: 6, dur: 1 },
+            { id: 'J', name: 'Backend: Core Auth & Roles', start: 7, dur: 2 },
+            { id: 'K', name: 'Frontend: User Dashboard', start: 7, dur: 1 },
+            { id: 'L', name: 'Module: Course & Academic Mgmt', start: 9, dur: 1 },
+            { id: 'M', name: 'Module: Personal Analysis', start: 10, dur: 1 },
+            { id: 'N', name: 'Module: Cafeteria & Library', start: 10, dur: 1 },
+            { id: 'O', name: 'General: Chatbot & Complaints', start: 9, dur: 1 },
+            { id: 'P', name: 'Unit & Integration Testing', start: 11, dur: 1 },
+            { id: 'Q', name: 'User Acceptance Testing (UAT)', start: 12, dur: 1 },
+            { id: 'R', name: 'Documentation & User Manuals', start: 13, dur: 1 },
+            { id: 'S', name: 'System Launch & Maintenance', start: 14, dur: 2 },
+        ];
+
+        const MONTHS = [
+            { name: 'Jan', weeks: [1, 2, 3, 4], color: '#0096C7' },
+            { name: 'Feb', weeks: [5, 6, 7, 8], color: '#00B341' },
+            { name: 'Mar', weeks: [9, 10, 11, 12], color: '#0096C7' },
+            { name: 'Apr', weeks: [13, 14, 15, 16], color: '#00B341' },
+        ];
+
+        const CURRENT_WEEK = 5;
+        const totalWeeks = 16; 
+        const processWidth = 220; 
+        const minTableWidth = 850; 
+
+        function getTaskStatus(start, dur) {
+            const end = start + dur;
+            if (end < CURRENT_WEEK) return 'completed';
+            if (start >= CURRENT_WEEK) return 'incomplete';
+            return 'partial';
+        }
+
+        function getBarColor(status) {
+            switch (status) {
+                case 'completed':
+                    return '#ee5253';
+                case 'completed':
+                    return '#ee5253';
+                case 'incomplete':
+                    return '#0096C7';
+                case 'partial':
+                    return 'gradient-partial';
+                default:
+                    return '#d1d5db';
+            }
+        }
+
+        function renderGanttChart() {
+            const root = document.getElementById('root');
+            
+            let html = `
+                <div class="min-h-screen bg-white p-4 font-sans max-w-[950px] mx-auto print:p-0">
+                    <!-- Title & Legend Header - More compact -->
+                    <div class="mb-4 flex flex-row items-end justify-between gap-4">
+                        <div class="flex items-baseline gap-2">
+                            <h1 class="text-3xl font-bold" style="color: #0096C7">Gantt Chart</h1>
+                            <h1 class="text-3xl font-normal" style="color: #00B341">Graph</h1>
+                        </div>
+
+                        <!-- Legend - Scaled down -->
+                        <div class="flex flex-row gap-4 text-[9px] font-bold text-slate-500 bg-slate-50 p-2 rounded border border-slate-100">
+                            <div class="flex items-center gap-1.5">
+                                <div class="w-4 h-2" style="background-color: #0096C7"></div>
+                                <span>INCOMPLETE</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <div class="w-4 h-2" style="background-color: #ee5253"></div>
+                                <span>COMPLETED</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <div class="w-4 h-2 gradient-partial"></div>
+                                <span>PARTIAL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gantt Container - Fixed ratios for A4 -->
+                    <div class="overflow-hidden rounded-sm border border-slate-200 relative mb-4">
+                        <table class="w-full border-collapse" style="min-width: ${minTableWidth}px">
+                            <thead>
+                                <!-- Month Header -->
+                                <tr>
+                                    <th class="text-white text-base font-medium py-2 border-r border-white/20" 
+                                        style="width: ${processWidth}px; background-color: #00B341">
+                                        Process
+                                    </th>
+            `;
+
+            // Month headers
+            MONTHS.forEach((month, idx) => {
+                const isLast = idx === MONTHS.length - 1;
+                html += `
+                    <th colspan="${month.weeks.length}" 
+                        class="text-white font-normal py-1.5 text-xs border-r border-white/20 ${isLast ? 'last:border-0' : ''}" 
+                        style="background-color: ${month.color}">
+                        ${month.name}
+                    </th>
+                `;
+            });
+
+            html += `
+                                </tr>
+                                <!-- Week Header -->
+                                <tr>
+                                    <th class="bg-white border-b border-slate-200" style="width: ${processWidth}px"></th>
+            `;
+
+            // Week headers
+            for (let i = 0; i < totalWeeks; i++) {
+                const bgColor = (i % 2 === 0) ? '#A9A9A9' : '#C0C0C0';
+                const isLast = i === totalWeeks - 1;
+                html += `
+                    <th class="py-1 text-[9px] font-bold text-white border-r border-white/20 ${isLast ? 'last:border-0' : ''}" 
+                        style="background-color: ${bgColor}">
+                        W${i + 1}
+                    </th>
+                `;
+            }
+
+            html += `
+                                </tr>
+                            </thead>
+                            <tbody class="relative">
+            `;
+
+            // Task rows
+            PROJECT_DATA.forEach((task, idx) => {
+                const status = getTaskStatus(task.start, task.dur);
+                const barColor = getBarColor(status);
+                const rowBg = idx % 2 === 0 ? 'bg-white' : 'bg-[#F9F9F9]';
+                
+                html += `
+                    <tr class="${rowBg}">
+                        <td class="py-2 px-3 text-[11px] font-medium text-slate-700 border-r border-slate-100" 
+                            style="width: ${processWidth}px">
+                            ${task.name}
+                        </td>
+                        
+                        <td colspan="${totalWeeks}" class="relative p-0 h-8">
+                            <!-- Grid Background -->
+                            <div class="absolute inset-0 flex">
+                `;
+                
+                for (let i = 0; i < totalWeeks; i++) {
+                    const isLast = i === totalWeeks - 1;
+                    html += `<div class="flex-1 border-r border-slate-100 ${isLast ? 'last:border-0' : ''} opacity-10"></div>`;
+                }
+                
+                const leftPercent = (task.start / totalWeeks) * 100;
+                const widthPercent = (task.dur / totalWeeks) * 100;
+                const barStyle = barColor === 'gradient-partial' 
+                    ? 'background: linear-gradient(to right, #ee5253 50%, #0096C7 50%);'
+                    : `background-color: ${barColor};`;
+                
+                html += `
+                            </div>
+                            
+                            <!-- Task Bar - Thinner for density -->
+                            <div class="absolute h-2.5 top-1/2 -translate-y-1/2 shadow-sm ${barColor === 'gradient-partial' ? 'gradient-partial' : ''}"
+                                style="left: ${leftPercent}%; width: ${widthPercent}%; ${barColor !== 'gradient-partial' ? barStyle : ''}">
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            const markerLeft = `calc(${processWidth}px + ${((CURRENT_WEEK - 0.5) / totalWeeks) * (100 - (processWidth/minTableWidth * 100))}%)`;
+            
+            html += `
+                            </tbody>
+                        </table>
+
+                        <!-- Current Week Marker Line - Positioned accurately for condensed view -->
+                        <div class="absolute top-0 bottom-0 w-[1.5px] bg-slate-800/80 z-40 pointer-events-none flex flex-col items-center"
+                            style="left: ${markerLeft}">
+                            <div class="bg-slate-800 text-white text-[8px] font-black px-1 py-0.5 whitespace-nowrap -translate-y-full rounded-t-sm shadow-md">
+                                W${CURRENT_WEEK}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compact Footer -->
+                    <div class="flex items-center justify-between border-t border-slate-100 pt-3">
+                        <div class="flex items-center gap-1.5">
+                            <div class="w-6 h-1" style="background-color: #00B341"></div>
+                            <span class="text-[8px] text-slate-400 font-bold uppercase tracking-widest">Project Roadmap v2.1</span>
+                        </div>
+                        <div class="text-[8px] text-slate-400 font-medium italic">
+                            Standard A4 Page Optimized Layout
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            root.innerHTML = html;
+        }
+
+        // Render on page load
+        document.addEventListener('DOMContentLoaded', renderGanttChart);
+    </script>
+</body>
+</html>

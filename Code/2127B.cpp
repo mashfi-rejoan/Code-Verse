@@ -19,10 +19,32 @@ using namespace std;
 #define vecin(name, len) vector<int> name(len); for (auto &_ : name) cin >> _;
 
 
-
 void solve() 
 {
-  
+  int n, k; cin >> n >> k;
+  string orgS; cin >> orgS;
+  string s = orgS;
+  k--;
+  int p1 = k + 1;
+  int p2 = 1;
+  for (int i = k + 1; i < n; i++) {
+    if (s[i] == '#') {
+      p2 = n - i + 1;
+      break;
+    }
+  }
+  int mn1 = min(p1, p2);
+  // trace(mn1);
+  int q1 = n - (k + 1) + 1;
+  int q2 = 1;
+  for (int i = k - 1; i >= 0; i--) {
+    if (s[i] == '#') {
+      q2 = i + 2;
+      break;
+    }
+  }
+  int mn2 = min(q1, q2);
+  cout << max(mn1, mn2) << nl;
 }
 
 int32_t main()
