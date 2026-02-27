@@ -23,21 +23,34 @@ using namespace std;
 void solve() 
 {
   int n; cin >> n;
-  set<int> st;
-  for (int i = 2; i * i <= n; i++) {
-    if (n % i == 0) {
-      st.insert(i);
-      while (n % i == 0) {
-        n /= i;
-      }
+  string s; cin >> s;
+  if (is_sorted(all(s))) {
+    cout << "Bob\n";
+    return;
+  }
+  int z = count(all(s), '0');
+  int o = 0;
+  int idx = 0;
+  vector<int> ans;
+  for (int i = 0; i < n; i++) {
+    if (s[i] == '1') {
+      o++;
+      ans.push_back(i + 1);
+    }
+    if (s[i] == '0') z--;
+
+    if (o == z) {
+      idx = i;
+      if (s[idx] == '0') ans.push_back(idx + 1);
+      break;
     }
   }
-  if (n != 1) st.insert(n);
-  int ans = 1;
-  for (auto& u : st) {
-    ans *= u;
+  for (int i = idx + 1; i < n; i++) {
+    if (s[i] == '0') ans.push_back(i + 1);
   }
-  cout << ans << nl;
+  cout << "Alice\n";
+  cout << sz(ans) << nl;
+  print(ans);
 }
 
 int32_t main()

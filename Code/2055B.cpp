@@ -23,21 +23,21 @@ using namespace std;
 void solve() 
 {
   int n; cin >> n;
-  set<int> st;
-  for (int i = 2; i * i <= n; i++) {
-    if (n % i == 0) {
-      st.insert(i);
-      while (n % i == 0) {
-        n /= i;
-      }
+  vecin(a, n);
+  vecin(b, n);
+  multiset<int> ms;
+  for (int i = 0; i < n; i++) {
+    ms.insert(a[i] - b[i]);
+  }
+  int x = abs(*ms.begin());
+  ms.erase(ms.begin());
+  for (auto& u : ms) {
+    if (u < x) {
+      no;
+      return;
     }
   }
-  if (n != 1) st.insert(n);
-  int ans = 1;
-  for (auto& u : st) {
-    ans *= u;
-  }
-  cout << ans << nl;
+  yes;
 }
 
 int32_t main()

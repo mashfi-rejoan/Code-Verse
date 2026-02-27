@@ -17,27 +17,19 @@ using namespace std;
 #define trace(x) cout << #x << ": " << x << " \n"
 #define print(x) for (auto u : (x)) cout << u << ' '; cout << nl;
 #define vecin(name, len) vector<int> name(len); for (auto &_ : name) cin >> _;
-
+#define pb push_back
 
 
 void solve() 
 {
-  int n; cin >> n;
-  set<int> st;
-  for (int i = 2; i * i <= n; i++) {
-    if (n % i == 0) {
-      st.insert(i);
-      while (n % i == 0) {
-        n /= i;
-      }
-    }
-  }
-  if (n != 1) st.insert(n);
-  int ans = 1;
-  for (auto& u : st) {
-    ans *= u;
-  }
-  cout << ans << nl;
+  int n, d; cin >> n >> d;
+  vector<int> v;
+  v.pb(1);
+  if (d % 3 == 0 or n >= 3) v.pb(3);
+  if (d % 5 == 0) v.pb(5);
+  if (d % 7 == 0 or n >= 3) v.pb(7);
+  if (d % 9 == 0 or n >= 6 or (n >= 3 and d % 3 == 0)) v.pb(9);
+  print(v);
 }
 
 int32_t main()

@@ -22,7 +22,11 @@ using namespace std;
 
 void solve() 
 {
-  
+  int n; cin >> n;
+  vecin(v, n);
+  int mx = max_element(all(v)) - v.begin();
+  swap(v[0], v[mx]);
+  print(v);
 }
 
 int32_t main()

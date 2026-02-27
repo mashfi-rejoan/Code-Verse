@@ -35,6 +35,8 @@ int32_t main()
   return 0;
 }
 
+// no of pair = (n * (n - 1)) / 2;
+
 // ---------- Contribution Technique ----------
 Sum of pair sums => (2 * n * a[i])
 Sum of subarray sums => (a[i] * i * (n - i + 1))

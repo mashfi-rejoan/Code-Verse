@@ -22,22 +22,33 @@ using namespace std;
 
 void solve() 
 {
-  int n; cin >> n;
+  int n, k; cin >> n >> k;
+  vector<int> v(n);
   set<int> st;
-  for (int i = 2; i * i <= n; i++) {
-    if (n % i == 0) {
-      st.insert(i);
-      while (n % i == 0) {
-        n /= i;
-      }
+  for (int i = 0; i < n; i++) {
+    int x; cin >> x;
+    v[i] = x;
+    st.insert(x);
+  }
+  int unq = sz(st);
+  map<int, int> mp;
+  for (auto& u : v) mp[u]++;
+  vector<pair<int, int>> vp;
+  for (auto [val, cnt] : mp) {
+    vp.push_back({cnt, val});
+  }
+  sort(all(vp));
+  for (auto [cnt, val] : vp) {
+    if (k >= cnt) {
+      k -= cnt;
+      unq--;
     }
   }
-  if (n != 1) st.insert(n);
-  int ans = 1;
-  for (auto& u : st) {
-    ans *= u;
+  if (unq <= 0) {
+    cout << 1 << nl;
+    return;
   }
-  cout << ans << nl;
+  cout << unq << nl;
 }
 
 int32_t main()

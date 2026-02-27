@@ -22,22 +22,17 @@ using namespace std;
 
 void solve() 
 {
-  int n; cin >> n;
-  set<int> st;
-  for (int i = 2; i * i <= n; i++) {
-    if (n % i == 0) {
-      st.insert(i);
-      while (n % i == 0) {
-        n /= i;
-      }
-    }
+  int x, y; cin >> x >> y;
+  int p = x;
+  if (y > 0) {
+    p = x - (2 * y);
   }
-  if (n != 1) st.insert(n);
-  int ans = 1;
-  for (auto& u : st) {
-    ans *= u;
+  else if (y < 0) {
+    p = x - (4 * abs(y));
   }
-  cout << ans << nl;
+
+  if (p % 3 == 0 and p >= 0) yes;
+  else no;
 }
 
 int32_t main()

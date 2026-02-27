@@ -17,27 +17,47 @@ using namespace std;
 #define trace(x) cout << #x << ": " << x << " \n"
 #define print(x) for (auto u : (x)) cout << u << ' '; cout << nl;
 #define vecin(name, len) vector<int> name(len); for (auto &_ : name) cin >> _;
-
+#define pb push_back
 
 
 void solve() 
 {
-  int n; cin >> n;
-  set<int> st;
-  for (int i = 2; i * i <= n; i++) {
-    if (n % i == 0) {
-      st.insert(i);
-      while (n % i == 0) {
-        n /= i;
-      }
+  int n, k; cin >> n >> k;
+  multiset<int> ms1, ms2;
+  for (int i = 0; i < n; i++) {
+    int x; cin >> x;
+    ms1.insert(x % k);
+  }
+  for (int i = 0; i < n; i++) {
+    int x; cin >> x;
+    ms2.insert(x % k);
+  }
+  vector<int> v;
+  for (auto &u : ms1) {
+    if (ms2.find(u) != ms2.end()) {
+      ms2.erase(ms2.find(u));
+      v.pb(u);
     }
   }
-  if (n != 1) st.insert(n);
-  int ans = 1;
-  for (auto& u : st) {
-    ans *= u;
+  for (auto &u : v) {
+    ms1.erase(ms1.find(u));
   }
-  cout << ans << nl;
+  v.clear();
+  for (auto &u : ms1) {
+    if (ms2.find(u + k) != ms2.end()) {
+      ms2.erase(ms2.find(u + k));
+      v.pb(u);
+    }
+    else if (ms2.find(abs(u - k)) != ms2.end()) {
+      ms2.erase(ms2.find(abs(u - k)));
+      v.pb(u);
+    }
+  }
+  for (auto &u : v) {
+    ms1.erase(ms1.find(u));
+  }
+  if (sz(ms1)) no;
+  else yes;
 }
 
 int32_t main()
