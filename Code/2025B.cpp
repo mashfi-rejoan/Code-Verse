@@ -18,9 +18,8 @@ using namespace std;
 #define print(x) for (auto u : (x)) cout << u << ' '; cout << nl;
 #define vecin(name, len) vector<int> name(len); for (auto &_ : name) cin >> _;
 
-const int N = 1e6 + 2, mod = 1000003;
-int fact[N], ifact[N];
-int bigmod(int x, int n) {
+int mod = 1e9 + 7;
+int bigmod(int x, int n, int mod) {
   x %= mod;
   int ans = 1 % mod;
   while (n > 0) {
@@ -30,30 +29,16 @@ int bigmod(int x, int n) {
   }
   return ans;
 }
-int inverse (int a) {
-  return bigmod(a, mod - 2);
-}
-void pre_calc() {
-  fact[0] = 1;
-  for (int i = 1; i < N; i++) {
-    fact[i] = fact[i - 1] * i % mod;
-  }
-  ifact[N - 1] = inverse(fact[N - 1]);
-  for (int i = N - 2; i >= 0; i--) {
-    // ifact[i] = inverse(fact[i]);
-    ifact[i] = ifact[i + 1] * (i + 1) % mod;
-  }
-}
-
-int nCr (int n, int r) {
-  if (n < 0 or n < r) return 0;
-  else return (((fact[n] * ifact[r]) % mod) * ifact[n - r]) % mod;
-}
 
 void solve() 
 {
-  int n, r; cin >> n >> r;
-  cout << nCr(n, r) << nl;
+  int t; cin >> t;
+  vecin(a, t);
+  vecin(b, t);
+  for (auto &u : b) {
+    cout << bigmod(2, u, mod) << nl;
+  }
+
 }
 
 int32_t main()
@@ -61,14 +46,9 @@ int32_t main()
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  pre_calc();
-  int t = 1, tc = 1;;
-  cin >> t;
-  while(t--) {
-    cout << "Case " << tc << ": ";
-    solve();
-    tc++;
-  }
+  int t = 1;
+  // cin >> t;
+  while(t--) solve();
 
   return 0;
 }

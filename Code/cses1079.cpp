@@ -18,7 +18,9 @@ using namespace std;
 #define print(x) for (auto u : (x)) cout << u << ' '; cout << nl;
 #define vecin(name, len) vector<int> name(len); for (auto &_ : name) cin >> _;
 
-const int N = 1e6 + 2, mod = 1000003;
+// factorial and inverse factorial precalculation upto 1e6
+
+const int N = 1e6 + 2, mod = 1e9 + 7;
 int fact[N], ifact[N];
 int bigmod(int x, int n) {
   x %= mod;
@@ -49,11 +51,15 @@ int nCr (int n, int r) {
   if (n < 0 or n < r) return 0;
   else return (((fact[n] * ifact[r]) % mod) * ifact[n - r]) % mod;
 }
+int nPr (int n, int r) {
+  if (n < 0) return 0;
+  else return (fact[n] * ifact[n - r]) % mod;
+}
 
 void solve() 
 {
   int n, r; cin >> n >> r;
-  cout << nCr(n, r) << nl;
+  cout << nPr(n, r) << nl;
 }
 
 int32_t main()
@@ -62,13 +68,9 @@ int32_t main()
   cin.tie(NULL);
 
   pre_calc();
-  int t = 1, tc = 1;;
-  cin >> t;
-  while(t--) {
-    cout << "Case " << tc << ": ";
-    solve();
-    tc++;
-  }
+  int t = 1;
+  // cin >> t;
+  while(t--) solve();
 
   return 0;
 }
